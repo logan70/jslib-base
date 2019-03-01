@@ -1,6 +1,6 @@
 {
   "name": "@logan/jslib-base",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A good JavaScript library scaffold",
   "main": "dist/index.js",
   "jsnext:main": "dist/index.esm.js",
@@ -42,7 +42,9 @@
     "src/**/*.{js,ts}": "npm run lint:fix"
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
