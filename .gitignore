@@ -1,0 +1,18 @@
+# MAC System
+.DS_Store
+
+# Editor
+.idea
+git
+
+# logs
+npm-debug.log
+
+# vendors
+node_modules/
+
+# vscode
+/.vscode/
+
+# roll-plugin-typescript2 cache
+.rpt2_cache

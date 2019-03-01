@@ -1,0 +1,95 @@
+{
+  "name": "@logan/jslib",
+  "version": "1.0.0",
+  "description": "A good JavaScript library scaffold",
+  "main": "dist/index.js",
+  "jsnext:main": "dist/index.esm.js",
+  "module": "dist/index.esm.js",
+  "sideEffects": false,
+  "scripts": {
+    "init": "node build init",
+    "dev": "cross-env NODE_ENV=development node build watch",
+    "build": "cross-env NODE_ENV=production node build build",
+    "build:cjs": "cross-env NODE_ENV=production node build build cjs",
+    "build:esm": "cross-env NODE_ENV=production node build build esm",
+    "build:aio": "cross-env NODE_ENV=production node build build aio",
+    "build:aio.min": "cross-env NODE_ENV=production node build build aioMin",
+    "help": "node build help",
+    "lint": "node build lint",
+    "lint:fix": "node build lint --fix",
+    "doc": "node build doc",
+    "test": "jest",
+    "commit": "npx git-cz",
+    "commitlint": "commitlint --color",
+    "release": "standard-version"
+  },
+  "author": "logan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/logan70/jslib"
+  },
+  "bugs": {
+    "url": "https://github.com/logan70/jslib/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts}": "lint:fix"
+  },
+  "commitlint": {
+    "extends": ["@commitlint/config-conventional"]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
+    "@types/jest": "^24.0.6",
+    "ascii-art": "^1.5.1",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.1.0",
+    "chalk": "^2.4.2",
+    "chokidar": "^2.1.1",
+    "cross-env": "^5.2.0",
+    "cz-conventional-changelog": "^2.1.0",
+    "docdash": "^1.0.2",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "glob": "^7.1.3",
+    "husky": "^1.3.1",
+    "inquirer": "^6.2.2",
+    "jest": "^24.1.0",
+    "jsdoc": "^3.5.5",
+    "lint-staged": "^8.1.4",
+    "minimist": "^1.2.0",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.1.2",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-eslint": "^5.0.0",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-tslint": "^0.2.2",
+    "rollup-plugin-typescript2": "^0.19.2",
+    "rollup-plugin-uglify": "^6.0.2",
+    "semver": "^5.6.0",
+    "standard-version": "^5.0.0",
+    "string.prototype.padstart": "^3.0.0",
+    "ts-jest": "^24.0.0",
+    "ts-node": "^8.0.2",
+    "tslint": "^5.12.1",
+    "typedoc": "^0.14.2",
+    "typedoc-plugin-external-module-name": "^2.0.0",
+    "typescript": "^3.3.3"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.2.5"
+  }
+}
