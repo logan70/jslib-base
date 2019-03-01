@@ -1,6 +1,6 @@
 module.exports = {
   // name of the project that will be used in the header of the template.
-  name: '@logan/jslib',
+  name: '@logan/jslib-base',
   mode: 'Modules',
   outputDir: 'docs/',
   target: 'ESNext',

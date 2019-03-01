@@ -1,79 +1,79 @@
-<h1 align="center">@logan/jslib</h1>
+<h1 align="center">@logan/jslib-base</h1>
 
 <div align="center">
 
 开箱即用的JavaScript库开发框架。
+**基于颜海镜大佬的[yanhaijing/jslib-base](https://github.com/yanhaijing/jslib-base)**
 
 </div>
 
-## :star: 特性
+## 特性
 
-- **支持ES6+编写源码**：支持使用 ES6+ 语法编写源码，babel自动编译
-- **Tree Shaking**：使用[rollup](https://www.rollupjs.com/guide/zh)打包，自动剔除第三方依赖无用代码
-- **多环境支持**：可生成 **UMD**、 **CommonJS**、 **ES Modules** 三种模块化格式文件，满足不同环境使用
-- **集成代码风格校验**：ESLint校验代码风格，采用[Airbnb的ESLint规范](https://github.com/lin-123/javascript)，并**禁止分号**
-- **自动生成API文档**：开发者按规范进行注释，通过JSDoc自动生成API文档，并自动部署至[Zero API 文档](http://zero.pages.oa.com)
+- 支持ES6+或TypeScript编写源码
+- 第三方依赖自动注入（自动剔除第三方依赖无用代码tree shaking）
+- 多环境支持（支持浏览器原生，支持AMD，CMD，支持Webpack，Rollup，fis等，支持Node）
+- 集成文档自动生成(JSDoc | TypeDoc)
+- 集成代码风格校验(eslint | tslint)
+- 集成单元测试环境及测试覆盖率(默认关闭)（jest）
+- 支持一键重命名
+- 支持监听构建
+- 集成commit信息校验及增量lint(husky)
+- 集成可持续构建工具[travis-ci](https://www.travis-ci.org/)
+- 集成ISSUE_TEMPLATE
 
-## :rocket: 使用
+## 使用
 
-使用tnpm安装zero
+克隆项目至本地并安装依赖
 
 ```bash
-$ tnpm install @tencent/zero --save-dev
+$ git clone https://github.com/logan70/jslib-base.git
+$ cd jslib-base
+$ npm install
 ```
 
-如果你是node环境
+初始化框架，按照提示填写项目名、变量名及项目地址
 
-```js
-const zero = require('@tencent/zero')
-// 按模块引入
-const { Msg, Util } = require('@tencent/zero')
+```bash
+$ npm run init
 ```
 
-如果你是vue等环境
+根据个人情况修改配置文件`jslib.config.js`
 
-```js
-import zero from '@tencent/zero'
-// 按模块引入
-import { Msg, Util } from '@tencent/zero'
+然后就可以在`src/`文件夹愉快滴开发了，也可使用dev模式监听变化构建，实时查看效果，开发完成后打包
+
+```bash
+# 监听构建
+$ npm run dev
+# 打包构建
+$ npm run build
 ```
 
-如果你是浏览器环境
+## 文档
 
-```html
-<script src="node_modules/@tencent/zero/dist/index.aio.min.js"></script>
-```
+自动生成API文档样例见[API文档](https://logan70.github.io/jslib/)
 
-如果你是requirejs环境
+## 支持环境
 
-```js
-requirejs(['node_modules/@tencent/zero/dist/index.aio.min.js'], function(zero) {
-    // xxx
-})
-```
-
-## :bookmark_tabs: 文档
-
-更多使用信息请参考[API文档](http://zero.pages.oa.com)
-
-## :pill: 支持环境
+> 这里指打包后的文件支持环境，开发环境要求node8+
 
 | IE   | CH   | FF   | SF   | OP   | IOS  | Android   | Node  |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- |
 | 8+   | 29+ | 55+  | 9+   | 50+  |  9+   | 4+   | 4+ |
 
-## :open_file_folder: 目录介绍
+## 目录介绍
 
 ```
-- src                        // zero 源码目录
-
-- build                      // 打包构建配置文件目录
-- dist                       // 打包后文件目录
-  - index.aio.js             // UMD格式文件，适用于浏览器直接引入、AMD、CMD
-  - index.aio.min.js         // UMD格式压缩版文件，适用于浏览器直接引入、AMD、CMD
-  - index.esm.js             // ES Modules格式文件，适用于Vue等脚手架，Webpack、rollup等预编译工具
-  - index.js                 // Commonjs格式文件，适用于Node环境
-- docs                       // JSDoc自动生成API文档目录
+├── src                        // 源码目录
+├── dist                       // 打包后文件目录
+  ├──index.aio.js              // UMD格式文件，适用于浏览器直接引入、AMD、CMD
+  ├──index.aio.min.js          // UMD格式压缩版文件，适用于浏览器直接引入、AMD、CMD
+  ├──index.esm.js              // ES Modules格式文件，适用于Webpack、rollup等预编译工具
+  └──index.js                  // Commonjs格式文件，适用于Node环境
+├── docs                       // 自动生成API文档目录
+├── __tests__                  // Jest测试文件目录
+└──coverage                    // Jest覆盖信息文件目录
 ```
 
-## :kissing_heart: 贡献者指南
+## License
+
+[MIT](https://github.com/logan70/jslib-base/blob/master/LICENSE)

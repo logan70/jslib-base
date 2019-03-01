@@ -23,11 +23,11 @@ function test(info) {
  * window.loganUmdName.someMethod(someParams)
  *
  * // es6模块规范内使用
- * import loganUmdName from '@logan/jslib'
+ * import loganUmdName from '@logan/jslib-base'
  * loganUmdName.someMethod(someParams)
  *
  * // Node内使用
- * const loganUmdName = require('@logan/jslib')
+ * const loganUmdName = require('@logan/jslib-base')
  * loganUmdName.someMethod(someParams)
  */
 const loganUmdName = {

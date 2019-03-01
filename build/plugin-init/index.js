@@ -25,7 +25,7 @@ promptArr.push({
 promptArr.push({
   type: 'input',
   name: 'libName',
-  default: '@logan/jslib',
+  default: '@logan/jslib-base',
   message: 'Enter the name of your project (used as npm package name):',
   validate(name) {
     if (/^[a-zA-Z@][\w-]*\/?[\w-]*$/.test(name) || /loganLibName/.test(name)) {
@@ -63,7 +63,8 @@ module.exports = (args = {}) => {
       'jslib.config.js',
       'package.json',
       'package-lock.json',
-      'README.md'
+      'README.md',
+      '__tests__/**'
     ]
     
     // glob匹配后的所有文件数组

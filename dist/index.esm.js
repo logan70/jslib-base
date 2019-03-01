@@ -7,10 +7,15 @@
  * @description 测试函数
  * @method test
  * @memberof loganUmdName
+ * @param {String} info - 要打印的信息
+ * @return {String} - 输入的字符串
+ * @example
+ * loganUmdName.test('Hello World!')
  */
-function test() {
+function test(info) {
   // eslint-disable-next-line
-  console.log('test');
+  console.log('test: ', info);
+  return info;
 }
 /**
  * @description JavaScript库 - loganUmdName

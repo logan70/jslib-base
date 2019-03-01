@@ -1,5 +1,5 @@
 {
-  "name": "@logan/jslib",
+  "name": "@logan/jslib-base",
   "version": "1.0.0",
   "description": "A good JavaScript library scaffold",
   "main": "dist/index.js",
@@ -39,7 +39,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,ts}": "lint:fix"
+    "src/**/*.{js,ts}": "npm run lint:fix"
   },
   "commitlint": {
     "extends": ["@commitlint/config-conventional"]

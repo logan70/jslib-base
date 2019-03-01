@@ -8,7 +8,7 @@ const requiredVersion = '>=8'
 // check node version
 if (!semver.satisfies(process.version, requiredVersion)) {
   error(
-    `You are using Node ${process.version}, but @logan/jslib ` +
+    `You are using Node ${process.version}, but @logan/jslib-base` +
     `requires Node ${requiredVersion}.\nPlease upgrade your Node version.`
   )
   process.exit(1)
