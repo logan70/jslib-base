@@ -1,6 +1,7 @@
 const path = require('path')
 
 module.exports = {
+  rootDir: path.resolve(__dirname, '../../'),
   // {String[]}, jest寻找的路径数组，例如 ["<rootDir>/__tests__"]
   "roots": [
     path.resolve(__dirname, '../../')
@@ -24,7 +25,5 @@ module.exports = {
   // 显示测试内容
   "verbose": true,
   // 收集测试覆盖率
-  // collectCoverage: true,
-  // 覆盖信息文件输出目录
-  // coverageDirectory: path.resolve(__dirname, '../../coverage')
+  collectCoverage: false
 }

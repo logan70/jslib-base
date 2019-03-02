@@ -18,10 +18,12 @@
     "lint": "node build lint",
     "lint:fix": "node build lint --fix",
     "doc": "node build doc",
-    "test": "node build test",
     "commit": "npx git-cz",
     "commitlint": "commitlint --color",
-    "release": "standard-version"
+    "release": "standard-version",
+    "test": "node build test",
+    "test:coverage": "node build test --coverage",
+    "codecov": "codecov"
   },
   "author": "logan",
   "license": "MIT",
@@ -39,7 +41,14 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,ts}": "npm run lint:fix"
+    "src/**/*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "src/**/*.ts": [
+      "tslint --fix",
+      "git add"
+    ]
   },
   "commitlint": {
     "extends": [
@@ -58,6 +67,7 @@
     "babel-jest": "^24.1.0",
     "chalk": "^2.4.2",
     "chokidar": "^2.1.1",
+    "codecov": "^3.2.0",
     "cross-env": "^5.2.0",
     "cz-conventional-changelog": "^2.1.0",
     "docdash": "^1.0.2",
