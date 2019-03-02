@@ -4,6 +4,11 @@
 
 开箱即用的JavaScript库开发框架。
 <br>
+[![Build Status](https://travis-ci.org/logan70/jslib-base.svg?branch=master)](https://travis-ci.org/logan70/jslib-base)
+[![](https://img.shields.io/badge/Powered%20by-jslib%20base-brightgreen.svg)](https://github.com/logan70/jslib-base)
+[![codecov](https://codecov.io/gh/logan70/jslib-base/branch/master/graph/badge.svg)](https://codecov.io/gh/logan70/jslib-base)
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/logan70/jslib-base.svg)](http://isitmaintained.com/project/logan70/jslib-base "Percentage of issues still open")
+<br>
 **基于颜海镜大佬的[yanhaijing/jslib-base](https://github.com/yanhaijing/jslib-base)**
 <br>
 
@@ -18,8 +23,7 @@
 - 多环境支持（支持浏览器原生，支持AMD，CMD，支持Webpack，Rollup，fis等，支持Node）
 - 集成文档自动生成(JSDoc|TypeDoc)
 - 集成代码风格校验(eslint|tslint)
-- 集成单元测试环境(jest)
-- 集成测试覆盖率(默认关闭)
+- 集成单元测试环境和测试覆盖率(jest+travis-ci+codecov)
 - 支持一键重命名
 - 支持监听构建
 - 集成commit信息校验及增量lint(husky)
