@@ -1,6 +1,6 @@
 const path = require('path')
 const rimraf = require('rimraf')
-const { execSync, spawn, execFile } = require('child_process')
+const { execFile } = require('child_process')
 const { info, done, log, error} = require('../util/logger.js')
 const { jsDocConfigPath } = require('../../jslib.config')
 const { opts } = require('./jsdocConf')

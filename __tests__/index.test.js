@@ -1,7 +1,7 @@
-import loganUmdName from '../src/index.js'
+import umdName from '../src/index.js'
 
-describe('测试函数测试(js)', () => {
-  it('测试', () => {
-    expect(loganUmdName.test('Hello World!')).toBe('Hello World!')
+describe('单元测试(js)', () => {
+  it('1加2等于3', () => {
+    expect(umdName.add(1, 2)).toEqual(3)
   })
 })

@@ -1,37 +1,36 @@
 /**
- * @description 测试函数
- * @method test
- * @memberof loganUmdName
- * @param {String} info - 要打印的信息
- * @return {String} - 输入的字符串
+ * @description 加法函数
+ * @method add
+ * @memberof umdName
+ * @param {Number} num1 - 加数
+ * @param {Number} num2 - 被加数
+ * @return {Number} - 两数相加结果
  * @example
- * loganUmdName.test('Hello World!')
+ * umdName.add('Hello World!')
  */
-function test(info) {
-  // eslint-disable-next-line
-  console.log('test: ', info)
-  return info
+function add(num1, num2) {
+  return num1 + num2
 }
 
 /**
- * @description JavaScript库 - loganUmdName
- * @namespace loganUmdName
- * @see https://github.com/logan70/jslib
+ * @description JavaScript库 - umdName
+ * @namespace umdName
+ * @see https://github.com/logan70/jslib-base
  * @example
  * // 浏览器内使用
  * // 引入文件：<script src="path/to/index.aio.min.js"><script>
- * window.loganUmdName.someMethod(someParams)
+ * window.umdName.add(1, 2)
  *
  * // es6模块规范内使用
- * import loganUmdName from '@logan/jslib-base'
- * loganUmdName.someMethod(someParams)
+ * import umdName from '@logan/jslib-base'
+ * umdName.add(1, 2)
  *
  * // Node内使用
- * const loganUmdName = require('@logan/jslib-base')
- * loganUmdName.someMethod(someParams)
+ * const umdName = require('@logan/jslib-base')
+ * umdName.add(1, 2)
  */
-const loganUmdName = {
-  test,
+const umdName = {
+  add,
 }
 
-export default loganUmdName
+export default umdName

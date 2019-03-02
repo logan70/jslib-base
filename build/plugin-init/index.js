@@ -11,10 +11,9 @@ const promptArr = []
 promptArr.push({
   type: 'input',
   name: 'umdName',
-  default: 'loganUmdName',
-  message: 'Enter the name you want for umd export (means global varible name in browsers):',
+  message: 'Enter the name for umd export (used as global varible name in browsers):',
   validate(name) {
-    if (/^[a-zA-Z][\w\.]*$/.test(name) || /loganUmdName/.test(name)) {
+    if (/^[a-zA-Z][\w\.]*$/.test(name)) {
       return true
     } else {
       return `Invalid varible name: ${name}!`
@@ -25,10 +24,9 @@ promptArr.push({
 promptArr.push({
   type: 'input',
   name: 'libName',
-  default: '@logan/jslib-base',
   message: 'Enter the name of your project (used as npm package name):',
   validate(name) {
-    if (/^[a-zA-Z@][\w-]*\/?[\w-]*$/.test(name) || /loganLibName/.test(name)) {
+    if (/^[a-zA-Z@][\w-]*\/?[\w-]*$/.test(name)) {
       return true
     } else {
       return `Invalid project name: ${name}!`
@@ -39,10 +37,10 @@ promptArr.push({
 promptArr.push({
   type: 'input',
   name: 'repoUrl',
-  default: 'https://github.com/logan70/jslib',
+  default: 'https://github.com/logan70/jslib-base',
   message: 'Enter the url of your repository:',
   validate(url) {
-    if (/^https?\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?$/.test(url) || /loganRepoUrl/.test(url)) {
+    if (/^https?\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?$/.test(url)) {
       return true
     } else {
       return `Invalid repository url: ${url}!`
@@ -83,9 +81,9 @@ module.exports = (args = {}) => {
             return
           }
           const result = data
-            .replace(/(l\lib|loganUmdName)/g, umdName)
-            .replace(/(@logan\/jslib|loganLibName)/g, libName)
-            .replace(/(https:\/\/github\.com\/logan70\/jslib|loganRepoUrl)/g, repoUrl)
+            .replace(/umdName/g, umdName)
+            .replace(/@logan\/jslib\-base/g, libName)
+            .replace(/https:\/\/github\.com\/logan70\/jslib/g, repoUrl)
         
           fs.writeFile(filePath, result, 'utf8', (err) => {
              if (err) {

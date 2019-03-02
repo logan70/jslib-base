@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1551445297699" clover="3.2.0">
-  <project timestamp="1551445297699" name="All files">
-    <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2" elements="8" coveredelements="8" complexity="0" loc="6" ncloc="6" packages="1" files="2" classes="2"/>
-    <file name="index.js" path="/Users/logan/myProj/jslib/src/index.js">
-      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <line num="12" count="1" type="stmt"/>
-      <line num="13" count="1" type="stmt"/>
-      <line num="33" count="1" type="stmt"/>
-    </file>
-    <file name="index.ts" path="/Users/logan/myProj/jslib/src/index.ts">
-      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <line num="14" count="1" type="stmt"/>
-      <line num="15" count="1" type="stmt"/>
-      <line num="41" count="1" type="stmt"/>
-    </file>
+<coverage generated="1551508862852" clover="3.2.0">
+  <project timestamp="1551508862853" name="All files">
+    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
   </project>
 </coverage>

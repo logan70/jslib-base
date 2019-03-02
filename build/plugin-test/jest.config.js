@@ -1,7 +1,9 @@
+const path = require('path')
+
 module.exports = {
-  // jest寻找的根路径，例如 "<rootDir>/__tests__"
+  // {String[]}, jest寻找的路径数组，例如 ["<rootDir>/__tests__"]
   "roots": [
-    "<rootDir>"
+    path.resolve(__dirname, '../../')
   ],
   // ts-jest用于支持typescript, babel-jest用于支持ES6模块化语法
   "transform": {
@@ -22,5 +24,7 @@ module.exports = {
   // 显示测试内容
   "verbose": true,
   // 收集测试覆盖率
-  // collectCoverage: true
+  // collectCoverage: true,
+  // 覆盖信息文件输出目录
+  // coverageDirectory: path.resolve(__dirname, '../../coverage')
 }

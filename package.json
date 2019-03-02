@@ -1,6 +1,6 @@
 {
   "name": "@logan/jslib-base",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "A good JavaScript library scaffold",
   "main": "dist/index.js",
   "jsnext:main": "dist/index.esm.js",
@@ -18,7 +18,7 @@
     "lint": "node build lint",
     "lint:fix": "node build lint --fix",
     "doc": "node build doc",
-    "test": "jest",
+    "test": "node build test",
     "commit": "npx git-cz",
     "commitlint": "commitlint --color",
     "release": "standard-version"
@@ -27,10 +27,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/logan70/jslib"
+    "url": "https://github.com/logan70/jslib-base"
   },
   "bugs": {
-    "url": "https://github.com/logan70/jslib/issues"
+    "url": "https://github.com/logan70/jslib-base/issues"
   },
   "husky": {
     "hooks": {
