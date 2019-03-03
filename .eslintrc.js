@@ -12,6 +12,8 @@ module.exports = {
     "sourceType": "module"
   },
   "rules": {
+    // 生产环境不允许console
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     // 生产环境不允许debugger
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     // 禁止在语句末尾使用分号 (除了消除以 [、(、/、+ 或 - 开始的语句的歧义)
