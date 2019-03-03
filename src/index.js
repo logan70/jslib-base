@@ -1,20 +1,6 @@
 /**
- * @description 加法函数
- * @method add
- * @memberof umdName
- * @param {Number} num1 - 加数
- * @param {Number} num2 - 被加数
- * @return {Number} - 两数相加结果
- * @example
- * umdName.add('Hello World!')
- */
-function add(num1, num2) {
-  return num1 + num2
-}
-
-/**
+ * @module umdName
  * @description JavaScript库 - umdName
- * @namespace umdName
  * @see https://github.com/logan70/jslib-base
  * @example
  * // 浏览器内使用
@@ -29,8 +15,15 @@ function add(num1, num2) {
  * const umdName = require('@logan/jslib-base')
  * umdName.add(1, 2)
  */
-const umdName = {
-  add,
-}
-
-export default umdName
+/**
+ * @description 加法函数
+ * @method add
+ * @memberof module:umdName
+ * @param {Number} num1 - 加数
+ * @param {Number} num2 - 被加数
+ * @return {Number} - 两数相加结果
+ * @example
+ * umdName.add('Hello World!')
+ */
+// eslint-disable-next-line
+export const add = (num1, num2) => num1 + num2;
