@@ -9,12 +9,11 @@
 [![codecov](https://codecov.io/gh/logan70/jslib-base/branch/master/graph/badge.svg)](https://codecov.io/gh/logan70/jslib-base)
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/logan70/jslib-base.svg)](http://isitmaintained.com/project/logan70/jslib-base "Percentage of issues still open")
 <br>
-**基于颜海镜大佬的[yanhaijing/jslib-base](https://github.com/yanhaijing/jslib-base)**
 <br>
 
 </div>
 
-本项目助力开发者轻松开发属于自己的JavaScript库。
+本项目助力开发者轻松开发属于自己的JavaScript库，灵感**基于颜海镜大佬的[jslib-base](https://github.com/yanhaijing/jslib-base)**。
 
 ## 特性
 
@@ -23,20 +22,21 @@
 - 多环境支持（支持浏览器原生，支持AMD，CMD，支持Webpack，Rollup，fis等，支持Node）
 - 集成文档自动生成(JSDoc|TypeDoc)
 - 集成代码风格校验(eslint|tslint)
-- 集成单元测试环境和测试覆盖率(jest+travis-ci+codecov)
+- 集成单元测试环境和测试覆盖率(jest)
 - 支持一键重命名
 - 支持监听构建
 - 集成commit信息校验及增量lint(husky)
 - 集成commit信息模板(使用`npm run commit`代替`git commit`)
-- 集成可持续构建工具[travis-ci](https://www.travis-ci.org/)
+- 集成可持续构建工具[travis-ci](https://travis-ci.org/logan70/jslib-base)
+- 集成单元测试结果上报[codecov](https://codecov.io/gh/logan70/jslib-base)
 - 集成ISSUE_TEMPLATE
 
 ## 使用
 
-克隆项目至本地并安装依赖
+首先克隆仓库至本地并安装依赖：
 
 ```bash
-$ git clone https://github.com/logan70/jslib-base.git
+$ git clone https://github.com/logan70/jslib-base-base-base-base-base-base.git
 $ cd jslib-base
 $ npm install
 ```
@@ -47,7 +47,8 @@ $ npm install
 $ npm run init
 ```
 
-根据个人情况修改配置文件`jslib.config.js`
+
+![](https://user-gold-cdn.xitu.io/2019/3/3/1694238a8e95e32f?w=758&h=500&f=gif&s=2249126)
 
 然后就可以在`src/`文件夹愉快地开发了(可监听变化构建，实时查看效果)，开发完成后打包
 
@@ -57,6 +58,37 @@ $ npm run dev
 # 打包构建
 $ npm run build
 ```
+
+最后就是打包发布：
+
+```bash
+# 自动修改CHANGLOG及版本信息
+$ npm run release
+# 登录npm
+$ npm login
+# 发布npm包
+$ npm publish
+```
+
+发布后就可以在各种环境内使用你自己的JavaScript库了:
+
+```js
+// 浏览器内使用
+// 引入文件：<script src="path/to/dist/index.aio.min.js"><script>
+yourLibName.xxx(xxx)
+
+// es6模块规范内使用
+import yourLibName from 'yourLibName'
+yourLibName.xxx(xxx)
+
+// Node内使用
+const yourLibName = require('yourLibName')
+yourLibName.xxx(xxx)
+```
+
+更多技术实践细节可前往博客[从零到一开发你的专属JavaScript库](https://github.com/logan70/Blog/issues/7)。
+
+欢迎大家多多Star支持。
 
 ## 文档
 
@@ -85,6 +117,10 @@ $ npm run build
 ├── jslib.config.js            // 框架配置文件
 └── CHANGELOG.md               // 变更日志
 ```
+
+## CHANGELOG
+
+[CHANGELOG](https://github.com/logan70/jslib-base/blob/master/CHANGELOG.md)
 
 ## License
 
