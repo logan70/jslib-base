@@ -1,15 +1,14 @@
 
-language: node_js       # 指定运行环境
+language: node_js            # 指定运行环境为node
 
-node_js:                # 指定nodejs版本，可以指定多个
+node_js:                     # 指定nodejs版本为8
   - "8"
 
-cache:				          # 缓存 node_js 依赖，提升第二次构建的效率
+cache:				               # 缓存 node_js 依赖，提升第二次构建的效率
   directories:
   - node_modules
 
 
-script:                 # 运行的脚本命令
-  - npm run test:coverage
-  # 这里我没有全局安装 codecov，所以要通过 npm 来运行 codecov
-  - npm run codecov
+script:                      # 运行的脚本命令
+  - npm run test:coverage    # 单元测试并收集测试覆盖信息
+  - npm run codecov          # 将单元测试结果上传到codecov
