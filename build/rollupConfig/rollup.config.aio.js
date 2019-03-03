@@ -2,7 +2,7 @@
 const nodeResolve = require('rollup-plugin-node-resolve')
 const commonjs = require('rollup-plugin-commonjs')
 const getCompiler = require('./getCompiler')
-const { srcType, umdName, banner, footer, output } = require('../../jslib.config')
+const { srcType, globalName, banner, footer, output } = require('../../jslib.config')
 
 exports.inputOption = {
   input: `src/index.${srcType}`,
@@ -21,7 +21,7 @@ exports.inputOption = {
 exports.outputOption = {
   file: output.umd,
   format: 'umd',
-  name: umdName,
+  name: globalName,
   banner,
   footer,
   // 源代码不会同时使用export和export default时，可设置为true，legacy模式下的模块系统可以兼容ie6-8

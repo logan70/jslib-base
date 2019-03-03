@@ -4,7 +4,7 @@ const inquirer = require('inquirer')
 
 const { info, done, log, clearConsole} = require('../util/logger.js')
 const globFiles = require('../util/globFiles')
-const runHelp = require('../plugin-help/index')
+const runHelp = require('../command-help/index')
 
 const promptArr = []
 // get umdName
@@ -33,7 +33,7 @@ promptArr.push({
     }
   }
 })
-// get library name
+// get library url
 promptArr.push({
   type: 'input',
   name: 'repoUrl',
@@ -56,22 +56,17 @@ module.exports = (args = {}) => {
     // files need to be modified
     let files = [
       '.github/**',
-      'build/plugin-doc/tsdocConf.js',
       'src/**',
       'jslib.config.js',
       'package.json',
       'package-lock.json',
-      'README.md',
-      '__tests__/**'
+      'README.md'
     ]
     
-    // glob匹配后的所有文件数组
+    // glob pattern files
     files = globFiles(files)
 
-    // 去除字符串前后单引号
-    const trimSingleQuotes = str => str.replace(/^'|'$/g, "")
-
-    // 文件替换内容
+    // modify files
     try {
       await Promise.all(files.map((file) => new Promise((resolve, reject) => {
         const filePath = path.resolve(__dirname, '../../', file)
@@ -83,7 +78,7 @@ module.exports = (args = {}) => {
           const result = data
             .replace(/umdName/g, umdName)
             .replace(/@logan\/jslib\-base/g, libName)
-            .replace(/https:\/\/github\.com\/logan70\/jslib/g, repoUrl)
+            .replace(/https:\/\/github\.com\/logan70\/jslib\-base/g, repoUrl)
         
           fs.writeFile(filePath, result, 'utf8', (err) => {
              if (err) {

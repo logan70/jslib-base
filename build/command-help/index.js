@@ -1,0 +1,31 @@
+const art = require('ascii-art')
+const chalk = require('chalk')
+const { log } = require('../util/logger.js')
+
+module.exports = () => {
+  return new Promise(resolve => {
+    art.font('@logan\/jslib\-base', 'Doom', data => {
+      console.log(chalk.cyan(('-').repeat(104)))
+      console.log(chalk.cyan(data))
+      console.log(chalk.cyan(('-').repeat(104)))
+      log()
+      log('Usage: npm run <command>')
+      log()
+      log('A good JavaScript library scaffold.')
+      log()
+      log('Commands:')
+      log('  npm run init, initialize this scaffold.')
+      log('  npm run build, output bundle files of four different types(UMD, UMD(uglified), ES6, CommonJs).')
+      log('  npm run dev, select a type of output to watch and rebuild on change.')
+      log('  npm run lint, lint your code with ESLint/TSLint.')
+      log('  npm run lint:fix, lint your code and fix errors and warnings that can be auto-fixed.')
+      log('  npm run doc, generate API documents based on good documentation comments in source code.')
+      log('  npm run test, test your code with Jest.')
+      log('  npm run test:coverage, test your code and collect coverage information with Jest.')
+      log('  npm run help, output usage information.')
+      log()
+      log(`See more details at ${chalk.cyan('https://github.com/logan70/jslib-base')}`)
+      resolve()
+    })
+  })
+}

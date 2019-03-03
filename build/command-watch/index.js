@@ -6,20 +6,13 @@ const tslint = require('rollup-plugin-tslint')
 const { info, done, log, clearConsole} = require('../util/logger.js')
 const { srcType, disableLint, requireDocs } = require('../../jslib.config')
 const getRollupConfig = require('../util/getRollupConfig')
-const generateDocs = require('../plugin-doc')
+const generateDocs = require('../command-doc')
 const inquirer = require('inquirer')
-
-// watch模式时rollup的额外配置
-const watchOption = {
-  chokidar: true,
-  include: 'src/**', // 监听的文件夹
-  exclude: 'node_modules/**' // 排除监听的文件夹
-}
 
 const promptArr = [{
   type: 'list',
   name: 'configFile',
-  message: 'Select a module type to watch and rebuild on change:',
+  message: 'Select an output type to watch and rebuild on change:',
   default: 'rollup.config.aio.js',
   choices: [{
     value: 'rollup.config.aio.js',
@@ -34,7 +27,7 @@ const promptArr = [{
 }]
 
 // rollup watch mode options
-const watchOptions = {
+const watchOption = {
   // chokidar should be used instead of the built-in fs.watch
   chokidar: true,
   include: 'src/**',

@@ -10,7 +10,7 @@ module.exports = (args = {}) => {
     const config = Object.assign({
       extensions: ['.js', '.jsx'],
       fix: false,
-      // lint出错时是否阻止构建
+      // fail build if any lint errors found
       failBuild: false
     }, args)
   
@@ -32,7 +32,7 @@ module.exports = (args = {}) => {
   
     const cwd = process.cwd()
   
-    // 打印被自动修复的文件
+    // files that was auto-fixed
     const hasFixed = report.results.some(f => f.output)
     if (hasFixed) {
       log(`The following files have been auto-fixed:`)
@@ -47,7 +47,7 @@ module.exports = (args = {}) => {
     if (report.warningCount || report.errorCount) {
       console.log(formatter(report.results).replace('`--fix` option', '`npm run lint:fix` command'))
       
-      // 出错阻止构建
+      // fail build if any lint errors found
       if (config.failBuild) {
         error(`Build failed due to lint errors!`)
         process.exit(0)

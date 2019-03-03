@@ -2,27 +2,27 @@ const path = require('path')
 const rollup = require('rollup')
 const { info, done, log, clearConsole} = require('../util/logger.js')
 
-const runLint = require('../plugin-lint')
-const getRollupConfig = require('../util/getRollupConfig')
+const runLint = require('../command-lint')
 const { requireDocs, disableLint, blockBuildOnLintFailures } = require('../../jslib.config')
-const generateDocs = require('../plugin-doc')
+const generateDocs = require('../command-doc')
 
-// 不同环境配置文件映射
+// configure file for different output type
 const rollupConfigMap = {
-  // UMD模块化方案，适用于浏览器
+  // UMD
   aio: 'rollup.config.aio.js',
-  // UMD模块化方案，适用于浏览器
+  // UMD, uglified
   aioMin: 'rollup.config.aio.min.js',
-  // ES6模块化方案，适用于框架、预编译工具
+  // ES6 Modules
   esm: 'rollup.config.esm.js',
-  // CommonJS模块化方案，适用于Node环境
+  // CommonJS
   cjs: 'rollup.config.js'
 }
 
 function runRollup(configFile) {
-  return new Promise(async (resolve, reject) => {
-    const options = getRollupConfig(configFile)
-
+  return new Promise(async (resolve) => {
+    // require rollup config
+    const options = require(path.resolve(__dirname, '../rollupConfig', configFile))
+    // bundle
     const bundle = await rollup.rollup(options.inputOption)
     await bundle.write(options.outputOption)
 
@@ -33,8 +33,9 @@ function runRollup(configFile) {
 }
 
 module.exports = async (args = {}) => {
-  const singleModule = args._[0]
-  singleModule && args._.shift()
+  const allTypes = Object.keys(rollupConfigMap)
+  const moduleTypes = args._.filter(type => allTypes.includes(type))
+  args._ = args._.filter(type => !allTypes.includes(type))
   clearConsole()
   // code linting
   if (!disableLint) {
@@ -45,7 +46,9 @@ module.exports = async (args = {}) => {
   }
 
   // rollup config fileName of different module specification
-  const configFiles = singleModule ? [rollupConfigMap[singleModule]] : Object.values(rollupConfigMap)
+  const configFiles = moduleTypes && moduleTypes.length
+    ? moduleTypes.map(moduleKey => rollupConfigMap[moduleKey])
+    : Object.values(rollupConfigMap)
 
   try {
     log()

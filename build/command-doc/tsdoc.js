@@ -2,14 +2,13 @@ const path = require('path')
 const rimraf = require('rimraf')
 const TypeDoc = require('typedoc')
 const { info, done, log} = require('../util/logger.js')
-const { tsDocConfigPath } = require('../../jslib.config')
 
 module.exports = async function tsdoc(args = {}) {
   return new Promise((resolve, reject) => {
     info(`Generating documents...`)
     log()
 
-    const tsdocConf = require(path.resolve(__dirname, '../../', tsDocConfigPath))
+    const tsdocConf = require(path.resolve(__dirname, './tsdocConf'))
   
     const config = {
       ...tsdocConf,

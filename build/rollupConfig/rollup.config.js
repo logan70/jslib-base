@@ -8,8 +8,7 @@ exports.inputOption = {
   input: `src/index.${srcType}`,
   plugins: [
     nodeResolve({
-      main: true,
-      extensions: [`${srcType}`]
+      extensions: ['.js']
     }),
     getCompiler()
   ]

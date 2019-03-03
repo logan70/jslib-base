@@ -11,7 +11,7 @@ module.exports = async function tslint(args = {}) {
   const config = Object.assign({
     formatter: 'codeFrame',
     fix: false,
-    // lint出错时是否阻止构建
+      // fail build if any lint errors found
     failBuild: false,
     ignore: '**/*.js',
     tslintConfigPath: 'tslint.json'
@@ -23,7 +23,7 @@ module.exports = async function tslint(args = {}) {
     ? args._
     : defaultFilesToLint
 
-  // glob匹配后的所有文件数组
+  // get path of files that matched glob pattern
   files = globFiles(files)
 
   const linter = new Linter(config)
@@ -54,7 +54,7 @@ module.exports = async function tslint(args = {}) {
 
   const result = linter.getResult()
 
-  // 打印被自动修复的文件
+  // files that was auto-fixed
   const hasFixed = result.fixes.length > 0
   if (hasFixed) {
     log(`The following files have been auto-fixed:`)
@@ -69,10 +69,10 @@ module.exports = async function tslint(args = {}) {
   const eNum = result.errorCount
   const wNum = result.warningCount
   if (eNum || wNum) {
-    // 打印lint错误信息
+    // log lint errors
     console.log(result.output)
 
-    // 打印错误数量
+    // log count of lint errors
     console.log(chalk.bold.red(`${
       (eNum ? eNum + ' error' + (eNum > 1 ? 's' : '') : '') +
       (eNum && wNum ? ' and ' : '') +
@@ -80,11 +80,11 @@ module.exports = async function tslint(args = {}) {
       ' found.'
     }`))
 
-    // 打印可被自动修复的错误数量
+    // log count of errors that can be auto-fixed
     const failNumCanBeFixed = result.failures.filter(fail => fail.fix).length
     failNumCanBeFixed && console.log(chalk.bold.red(`${failNumCanBeFixed} error${failNumCanBeFixed > 1 ? 's' : ''} potentially fixable with the \`npm run lint:fix\` command.`))
 
-    // 出错阻止构建
+    // fail build if any lint errors found
     if (config.failBuild) {
       error(`Build failed due to lint errors!`)
       process.exit(0)

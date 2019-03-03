@@ -1,6 +1,8 @@
+const { name } = require('../../package.json')
+
 module.exports = {
   // name of the project that will be used in the header of the template.
-  name: '@logan/jslib-base',
+  name,
   mode: 'Modules',
   outputDir: 'docs/',
   target: 'ESNext',
