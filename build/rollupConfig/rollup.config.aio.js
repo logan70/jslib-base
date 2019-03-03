@@ -1,5 +1,4 @@
-// rollup.config.aio.js
-// umd
+// umd格式
 const nodeResolve = require('rollup-plugin-node-resolve')
 const commonjs = require('rollup-plugin-commonjs')
 const getCompiler = require('./getCompiler')
@@ -7,12 +6,10 @@ const { srcType, umdName, banner, footer, output } = require('../../jslib.config
 
 exports.inputOption = {
   input: `src/index.${srcType}`,
-  experimentalCacheExpiry: 0,
-  cache: false,
   plugins: [
     nodeResolve({
       main: true,
-      extensions: [`.${srcType}`]
+      extensions: ['.js']
     }),
     commonjs({
       include: 'node_modules/**',
