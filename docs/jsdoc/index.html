@@ -28,7 +28,7 @@
     
     <input type="text" id="nav-search" placeholder="Search" />
     
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="umdName.html">umdName</a><ul class='methods'><li data-type='method' style='display: none;'><a href="umdName.html#.add">add</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-umdName.html">umdName</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-umdName.html#.add">add</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -41,6 +41,11 @@
     
 
 
+    <section class="package">
+        <h3> </h3>		
+    </section>
+
+
 
 
 
@@ -51,6 +56,7 @@
     
 
 
+
     <section class="readme">
         <article><h1 align="center">jslib-base</h1>
 
@@ -58,37 +64,60 @@
 
 开箱即用的JavaScript库开发框架。
 <br>
-<strong>基于颜海镜大佬的<a href="https://github.com/yanhaijing/jslib-base">yanhaijing/jslib-base</a></strong>
+<a href="https://travis-ci.org/logan70/jslib-base"><img src="https://travis-ci.org/logan70/jslib-base.svg?branch=master" alt="Build Status"></a>
+<a href="https://github.com/logan70/jslib-base"><img src="https://img.shields.io/badge/Powered%20by-jslib%20base-brightgreen.svg" alt=""></a>
+<a href="https://codecov.io/gh/logan70/jslib-base"><img src="https://codecov.io/gh/logan70/jslib-base/branch/master/graph/badge.svg" alt="codecov"></a>
+<a href="http://isitmaintained.com/project/logan70/jslib-base" title="Percentage of issues still open"><img src="http://isitmaintained.com/badge/open/logan70/jslib-base.svg" alt="Percentage of issues still open"></a>
+<br>
 <br>
 
 </div>
 
-<p>本项目助力开发者轻松开发属于自己的JavaScript库。</p>
+<p>本项目助力开发者轻松开发属于自己的JavaScript库，灵感<strong>基于颜海镜大佬的<a href="https://github.com/yanhaijing/jslib-base">jslib-base</a></strong>。</p>
 <h2>特性</h2><ul>
 <li>支持ES6+或TypeScript编写源码</li>
 <li>第三方依赖自动注入（自动剔除第三方依赖无用代码tree shaking）</li>
 <li>多环境支持（支持浏览器原生，支持AMD，CMD，支持Webpack，Rollup，fis等，支持Node）</li>
 <li>集成文档自动生成(JSDoc|TypeDoc)</li>
 <li>集成代码风格校验(eslint|tslint)</li>
-<li>集成单元测试环境(jest)</li>
-<li>集成测试覆盖率(默认关闭)</li>
+<li>集成单元测试环境和测试覆盖率(jest)</li>
 <li>支持一键重命名</li>
 <li>支持监听构建</li>
 <li>集成commit信息校验及增量lint(husky)</li>
 <li>集成commit信息模板(使用<code>npm run commit</code>代替<code>git commit</code>)</li>
-<li>集成可持续构建工具<a href="https://www.travis-ci.org/">travis-ci</a></li>
+<li>集成可持续构建工具<a href="https://travis-ci.org/logan70/jslib-base">travis-ci</a></li>
+<li>集成单元测试结果上报<a href="https://codecov.io/gh/logan70/jslib-base">codecov</a></li>
 <li>集成ISSUE_TEMPLATE</li>
 </ul>
-<h2>使用</h2><p>克隆项目至本地并安装依赖</p>
-<pre class="prettyprint source lang-bash"><code>$ git clone https://github.com/logan70/jslib-base.git
+<h2>使用</h2><p>首先克隆仓库至本地并安装依赖：</p>
+<pre class="prettyprint source lang-bash"><code>$ git clone https://github.com/logan70/jslib-base-base-base-base-base-base.git
 $ cd jslib-base
 $ npm install</code></pre><p>初始化框架，按照提示填写项目名、变量名及项目地址</p>
-<pre class="prettyprint source lang-bash"><code>$ npm run init</code></pre><p>根据个人情况修改配置文件<code>jslib.config.js</code></p>
+<pre class="prettyprint source lang-bash"><code>$ npm run init</code></pre><p><img src="https://user-gold-cdn.xitu.io/2019/3/3/1694238a8e95e32f?w=758&amp;h=500&amp;f=gif&amp;s=2249126" alt=""></p>
 <p>然后就可以在<code>src/</code>文件夹愉快地开发了(可监听变化构建，实时查看效果)，开发完成后打包</p>
 <pre class="prettyprint source lang-bash"><code># 监听构建
 $ npm run dev
 # 打包构建
-$ npm run build</code></pre><h2>文档</h2><p><a href="https://logan70.github.io/jslib-base/docs/jsdoc/index.html">API文档样例（JavaScript版）</a></p>
+$ npm run build</code></pre><p>最后就是打包发布：</p>
+<pre class="prettyprint source lang-bash"><code># 自动修改CHANGLOG及版本信息
+$ npm run release
+# 登录npm
+$ npm login
+# 发布npm包
+$ npm publish</code></pre><p>发布后就可以在各种环境内使用你自己的JavaScript库了:</p>
+<pre class="prettyprint source lang-js"><code>// 浏览器内使用
+// 引入文件：&lt;script src=&quot;path/to/dist/index.aio.min.js&quot;>&lt;script>
+yourLibName.xxx(xxx)
+
+// es6模块规范内使用
+import yourLibName from 'yourLibName'
+yourLibName.xxx(xxx)
+
+// Node内使用
+const yourLibName = require('yourLibName')
+yourLibName.xxx(xxx)</code></pre><p>更多技术实践细节可前往博客<a href="https://github.com/logan70/Blog/issues/7">从零到一开发你的专属JavaScript库</a>。</p>
+<p>欢迎大家多多Star支持。</p>
+<h2>文档</h2><p><a href="https://logan70.github.io/jslib-base/docs/jsdoc/index.html">API文档样例（JavaScript版）</a></p>
 <p><a href="https://logan70.github.io/jslib-base/docs/tsdoc/index.html">API文档样例（TypeScript版）</a></p>
 <p><a href="https://logan70.github.io/jslib-base/coverage/lcov-report/index.html">单元测试覆盖信息样例</a></p>
 <h2>支持环境</h2><blockquote>
@@ -126,7 +155,8 @@ $ npm run build</code></pre><h2>文档</h2><p><a href="https://logan70.github.io
 ├── __tests__                  // 单元测试文件目录
 ├── coverage                   // 单元测试覆盖信息目录
 ├── jslib.config.js            // 框架配置文件
-└── CHANGELOG.md               // 变更日志</code></pre><h2>License</h2><p><a href="https://github.com/logan70/jslib-base/blob/master/LICENSE">MIT</a></p></article>
+└── CHANGELOG.md               // 变更日志</code></pre><h2>CHANGELOG</h2><p><a href="https://github.com/logan70/jslib-base/blob/master/CHANGELOG.md">CHANGELOG</a></p>
+<h2>License</h2><p><a href="https://github.com/logan70/jslib-base/blob/master/LICENSE">MIT</a></p></article>
     </section>
 
 
