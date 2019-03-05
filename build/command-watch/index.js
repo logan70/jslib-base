@@ -2,11 +2,12 @@ const path = require('path')
 const rollup = require('rollup')
 const { eslint } = require('rollup-plugin-eslint')
 const tslint = require('rollup-plugin-tslint')
+const logStats = require('../util/logStats')
+const Spinner = require('../util/spinner')
 
 const { info, done, log, clearConsole} = require('../util/logger.js')
-const { srcType, disableLint, requireDocs } = require('../../jslib.config')
+const { srcType, disableLint } = require('../../jslib.config')
 const getRollupConfig = require('../util/getRollupConfig')
-const generateDocs = require('../command-doc')
 const inquirer = require('inquirer')
 
 const promptArr = [{
@@ -27,7 +28,7 @@ const promptArr = [{
 }]
 
 // rollup watch mode options
-const watchOption = {
+const watchOptions = {
   // chokidar should be used instead of the built-in fs.watch
   chokidar: true,
   include: 'src/**',
@@ -42,7 +43,7 @@ module.exports = (args = {}) => {
       const options = {
         ...customOptions.inputOption,
         output: customOptions.outputOption,
-        watch: watchOption
+        watch: watchOptions
       }
       if (!disableLint) {
         // add lint plugin to rollup options
@@ -57,21 +58,19 @@ module.exports = (args = {}) => {
 
       // handle event
       let stamp
-      watcher.on('event', async (event) => {
+      const files = [customOptions.outputOption.file]
+      const spinner = new Spinner()
+      watcher.on('event', (event) => {
         if (event.code === 'START') {
           clearConsole()
           stamp = new Date().getTime()
-          info('Building...')
-          log()
+          spinner.setMessage(stamp ? 'Rebuilding...' : 'Building')
+          spinner.log()
         } else if (event.code === 'END') {
-          // done(`${customOptions.outputOption.file} generated successfully.`)
-          // generate documents
-          if (requireDocs) {
-            await generateDocs()
-          }
-          log()
+          spinner.clear()
           done(`Compiled successfully in ${new Date().getTime() - stamp}ms`)
           log()
+          logStats(files, true)
         }
       })
     })

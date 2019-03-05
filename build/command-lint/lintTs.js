@@ -5,8 +5,6 @@ const { info, done, error, log, clearConsole, chalk } = require('../util/logger.
 const globFiles = require('../util/globFiles')
 
 module.exports = async function tslint(args = {}) {
-  info(`Linting code...`)
-  log()
 
   const config = Object.assign({
     formatter: 'codeFrame',
@@ -89,7 +87,9 @@ module.exports = async function tslint(args = {}) {
       error(`Build failed due to lint errors!`)
       process.exit(0)
     }
+    return false
   } else {
-    done(hasFixed ? `All lint errors auto-fixed.` : `No lint errors found!`)
+    // done(hasFixed ? `All lint errors auto-fixed.` : `No lint errors found!`)
+    return true
   }
 }

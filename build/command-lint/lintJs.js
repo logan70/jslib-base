@@ -4,8 +4,6 @@ const { info, done, error, log, clearConsole, chalk } = require('../util/logger.
 
 module.exports = (args = {}) => {
   return new Promise((resolve, reject) => {
-    info(`Linting code...`)
-    log()
   
     const config = Object.assign({
       extensions: ['.js', '.jsx'],
@@ -52,10 +50,10 @@ module.exports = (args = {}) => {
         error(`Build failed due to lint errors!`)
         process.exit(0)
       }
-      resolve()
+      resolve(false)
     } else {
-      done(hasFixed ? `All lint errors auto-fixed.` : `No lint errors found!`)
-      resolve()
+      // done(hasFixed ? `All lint errors auto-fixed.` : `No lint errors found!`)
+      resolve(true)
     }
   })
 }

@@ -1,12 +1,9 @@
 const path = require('path')
 const rimraf = require('rimraf')
 const TypeDoc = require('typedoc')
-const { info, done, log} = require('../util/logger.js')
 
 module.exports = async function tsdoc(args = {}) {
   return new Promise((resolve, reject) => {
-    info(`Generating documents...`)
-    log()
 
     const tsdocConf = require(path.resolve(__dirname, './tsdocConf'))
   
@@ -33,7 +30,6 @@ module.exports = async function tsdoc(args = {}) {
         // Alternatively generate JSON output
         // app.generateJson(project, outputDir + '/documentation.json')
 
-        done('Documents generated successfully.')
         resolve()
       })
     } else {
