@@ -55,9 +55,16 @@ $ npm run init
 ```bash
 # 监听构建
 $ npm run dev
+```
+
+![](https://user-gold-cdn.xitu.io/2019/3/7/169575184f469fd8?w=614&h=422&f=gif&s=2223831)
+
+```bash
 # 打包构建
 $ npm run build
 ```
+
+![](https://user-gold-cdn.xitu.io/2019/3/7/1695754c134482e7?w=592&h=332&f=gif&s=1273282)
 
 最后就是打包发布：
 
