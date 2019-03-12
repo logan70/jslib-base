@@ -75,10 +75,13 @@ module.exports = (args = {}) => {
             reject(err)
             return
           }
-          const result = data
-            .replace(/umdName/g, umdName)
+          let result = data
             .replace(/@logan\/jslib\-base/g, libName)
             .replace(/https:\/\/github\.com\/logan70\/jslib\-base/g, repoUrl)
+          
+          if (file.indexOf('jslib.config.js') > -1) {
+            result = result.replace(/globalName: \'_\'/g, `globalName: '${umdName}'`)
+          }
         
           fs.writeFile(filePath, result, 'utf8', (err) => {
              if (err) {
