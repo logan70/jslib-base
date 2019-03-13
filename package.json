@@ -7,14 +7,15 @@
   "module": "dist/index.esm.js",
   "sideEffects": false,
   "scripts": {
+    "check-types": "tsc",
     "dev": "cross-env NODE_ENV=development node build/index.js watch",
     "build": "cross-env NODE_ENV=production node build/index.js build",
     "build:cjs": "cross-env NODE_ENV=production node build/index.js build cjs",
     "build:esm": "cross-env NODE_ENV=production node build/index.js build esm",
     "build:aio": "cross-env NODE_ENV=production node build/index.js build aio",
     "build:aioMin": "cross-env NODE_ENV=production node build/index.js build aioMin",
-    "lint": "node build/index.js lint",
-    "lint:fix": "node build/index.js lint --fix",
+    "lint": "cross-env NODE_ENV=production node build/index.js lint",
+    "lint:fix": "cross-env NODE_ENV=production node build/index.js lint --fix",
     "doc": "node build/index.js doc",
     "test": "node build/index.js test",
     "test:coverage": "node build/index.js test --coverage",
@@ -44,12 +45,8 @@
     }
   },
   "lint-staged": {
-    "src/**/*.js": [
+    "src/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix",
-      "git add"
-    ],
-    "src/**/*.ts": [
-      "tslint --fix",
       "git add"
     ]
   },
@@ -62,9 +59,12 @@
     "@babel/core": "^7.3.4",
     "@babel/plugin-transform-runtime": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
+    "@babel/preset-typescript": "^7.3.3",
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-conventional": "^7.5.0",
     "@types/jest": "^24.0.9",
+    "@typescript-eslint/eslint-plugin": "^1.4.2",
+    "@typescript-eslint/parser": "^1.4.2",
     "ascii-art": "^1.5.1",
     "babel-jest": "^24.1.0",
     "chalk": "^2.4.2",
@@ -92,13 +92,9 @@
     "rollup-plugin-eslint": "^5.0.0",
     "rollup-plugin-json": "^3.1.0",
     "rollup-plugin-node-resolve": "^4.0.1",
-    "rollup-plugin-tslint": "^0.2.2",
-    "rollup-plugin-typescript2": "^0.19.3",
     "rollup-plugin-uglify": "^6.0.2",
     "semver": "^5.6.0",
     "standard-version": "^5.0.1",
-    "ts-jest": "^24.0.0",
-    "tslint": "^5.13.1",
     "typedoc": "^0.14.2",
     "typedoc-plugin-external-module-name": "^2.0.0",
     "typescript": "^3.3.3333"
