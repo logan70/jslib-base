@@ -19,7 +19,7 @@ exports.inputOption = {
 }
 
 exports.outputOption = {
-  file: output.umd,
+  file: output.aio,
   format: 'umd',
   name: globalName,
   banner,

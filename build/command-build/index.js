@@ -1,10 +1,11 @@
 const path = require('path')
 const rollup = require('rollup')
+const { execSync } = require('child_process')
 const { info, done, log, clearConsole} = require('../util/logger.js')
 
 const Spinner = require('../util/spinner')
 const runLint = require('../command-lint')
-const { requireDocs, disableLint, blockBuildOnLintFailures } = require('../../jslib.config')
+const { srcType, requireDocs, disableLint, blockBuildOnLintFailures, output } = require('../../jslib.config')
 const generateDocs = require('../command-doc')
 const logStats = require('../util/logStats')
 
@@ -20,6 +21,41 @@ const rollupConfigMap = {
   cjs: 'rollup.config.js'
 }
 
+// get the list of rollup config files
+const getConfigFiles = (types) => types.map(type => rollupConfigMap[type]).filter(Boolean)
+
+// the list of bundle's relative path used to output file status
+const outputFiles = []
+
+// single rollup task
+const runRollup = (configFile) => {
+  return new Promise(async (resolve, reject) => {
+    // require rollup config
+    const options = require(path.resolve(__dirname, '../rollupConfig', configFile))
+    // create bundle
+    const bundle = await rollup.rollup(options.inputOption)
+    try {
+      await bundle.write(options.outputOption)
+      outputFiles.push(options.outputOption.file)
+      resolve()
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
+// check typescript, because .ts files will be transformed by babel instead of tsc
+const checkTypeScript = () => {
+  return new Promise(resolve => {
+    try {
+      execSync('tsc', { stdio: 'inherit' })
+      resolve()
+    } catch (error) {
+      process.exit(0)
+    }
+  })
+}
+
 
 module.exports = async (args = {}) => {
   const startTime = new Date().getTime()
@@ -29,37 +65,30 @@ module.exports = async (args = {}) => {
   // delete module types from args._
   args._ = args._.filter(type => !allTypes.includes(type))
 
-  // rollup config fileName of different module specification
+  // get the list of rollup config file
   const configFiles = moduleTypes && moduleTypes.length
-    ? moduleTypes.map(moduleKey => rollupConfigMap[moduleKey])
-    : Object.values(rollupConfigMap)
-
-  // output file relative path used to log file status
-  const outputFiles = []
-
-  // single rollup task
-  const runRollup = (configFile) => {
-    return new Promise(async (resolve) => {
-      // require rollup config
-      const options = require(path.resolve(__dirname, '../rollupConfig', configFile))
-      // bundle
-      const bundle = await rollup.rollup(options.inputOption)
-      await bundle.write(options.outputOption)
-  
-      outputFiles.push(options.outputOption.file)
-      resolve()
-    })
-  }
+    ? getConfigFiles(moduleTypes)
+    : (output && Object.keys(output).length
+      ? getConfigFiles(Object.keys(output))
+      : Object.values(rollupConfigMap)
+    )
+    
+  info('Building...')
+  log()
 
   try {
-    info('Building...')
-    log()
     const spinner = new Spinner()
     spinner.log()
     log()
+  
+    // check typescript, because .ts files will be transformed by babel instead of tsc
+    if (srcType === 'ts') {
+      spinner.setMessage('Checking typeScript')
+      await checkTypeScript()
+    }
 
-    let noLintErrors = false
     // code linting
+    let noLintErrors = false
     if (!disableLint) {
       spinner.setMessage('Linting code')
       if (blockBuildOnLintFailures) {
@@ -67,9 +96,9 @@ module.exports = async (args = {}) => {
       }
       noLintErrors = await runLint(args)
     }
-    log()
-    spinner.setMessage('Generating output files')
+
     // run rollup
+    spinner.setMessage('Generating output files')
     await Promise.all(configFiles.map(file => runRollup(file)))
   
     // generate documents
@@ -84,10 +113,11 @@ module.exports = async (args = {}) => {
     noLintErrors && clearConsole()
     done(`Compiled successfully in ${endTime - startTime}ms`)
     log()
-
+    
     // log file stats
     logStats(outputFiles)
-  } catch (e) {
-    console.error(e)
+  } catch (error) {
+    console.error(error)
+    process.exit(0)
   }
 }
