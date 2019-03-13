@@ -8,10 +8,8 @@ module.exports = {
     path.resolve(__dirname, '../../')
   ],
   transform: {
-    // support typescript
-    "^.+\\.tsx?$": "ts-jest",
-    // support ES6+
-    "^.+\\.jsx?$": "babel-jest"
+    // support typescript and es6+ syntax
+    "^.+\\.[jt]sx?$": "babel-jest"
   },
   // The pattern or patterns Jest uses to detect test files.
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.[jt]sx?$",

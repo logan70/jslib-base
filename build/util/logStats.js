@@ -23,9 +23,8 @@ const makeRow = (a, b, c) => `  ${a}\t    ${b}\t ${c}`
  * 
  * @param {String[]} files
  * @param {String} file - path of file relative to root directory
- * @param {Boolean} isdev - development mode or not
  */
-module.exports = (files = [], isdev = false) => {
+module.exports = (files = []) => {
   // get size and gzipped size of file
   const assets = files.map((file) => {
     const filePath = path.resolve(__dirname, '../../', file)
@@ -55,6 +54,5 @@ module.exports = (files = [], isdev = false) => {
     )).join(`\n`)
   )
   console.log(`${ui.toString()}\n\n  ${chalk.gray(`Only js bundle files included.`)}\n`)
-  isdev && console.log('  Waiting for changes...')
   return
 }
