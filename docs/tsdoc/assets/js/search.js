@@ -1,3 +1,3 @@
 var typedoc = typedoc || {};
             typedoc.search = typedoc.search || {};
-            typedoc.search.data = {"kinds":{"1":"External module","64":"Function"},"rows":[{"id":0,"kind":1,"name":"umdName","url":"modules/umdname.html","classes":"tsd-kind-external-module"},{"id":1,"kind":64,"name":"add","url":"modules/umdname.html#add","classes":"tsd-kind-function tsd-parent-kind-external-module","parent":"umdName"}]};
+            typedoc.search.data = {"kinds":{"1":"External module","64":"Function"},"rows":[{"id":0,"kind":1,"name":"umdName","url":"modules/umdname.html","classes":"tsd-kind-external-module"},{"id":1,"kind":64,"name":"add","url":"modules/umdname.html#add","classes":"tsd-kind-function tsd-parent-kind-external-module","parent":"umdName"},{"id":2,"kind":64,"name":"test","url":"modules/umdname.html#test","classes":"tsd-kind-function tsd-parent-kind-external-module","parent":"umdName"}]};

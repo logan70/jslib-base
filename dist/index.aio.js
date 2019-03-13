@@ -37,12 +37,15 @@
 	 * @example
 	 * umdName.add('Hello World!')
 	 */
-	// eslint-disable-next-line
 	var add = function add(num1, num2) {
 	  return num1 + num2;
 	};
+	var test = function test() {
+	  return 'test';
+	};
 
 	exports.add = add;
+	exports.test = test;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 

@@ -25,5 +25,6 @@
  * @example
  * umdName.add('Hello World!')
  */
-// eslint-disable-next-line
-export const add = (num1, num2) => num1 + num2;
+export const add = (num1, num2) => num1 + num2
+
+export const test = () => 'test'
