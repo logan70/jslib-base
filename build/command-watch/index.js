@@ -1,7 +1,6 @@
 const path = require('path')
 const rollup = require('rollup')
 const { eslint } = require('rollup-plugin-eslint')
-const tslint = require('rollup-plugin-tslint')
 const logStats = require('../util/logStats')
 const Spinner = require('../util/spinner')
 
@@ -47,9 +46,7 @@ module.exports = (args = {}) => {
       }
       if (!disableLint) {
         // add lint plugin to rollup options
-        const lintPlugin = srcType === 'js'
-          ? eslint({ include: 'src/**/*.js', formatter: 'codeFrame' })
-          : tslint({ include: 'src/**/*.ts', formatter: 'codeFrame' })
+        const lintPlugin = eslint({ include: [`src/**/*.${srcType}`, `src/**/*.${srcType}x`], formatter: 'codeFrame' })
         options.plugins.unshift(lintPlugin)
       }
 
@@ -70,7 +67,7 @@ module.exports = (args = {}) => {
           spinner.clear()
           done(`Compiled successfully in ${new Date().getTime() - stamp}ms`)
           log()
-          logStats(files, true)
+          log('  Waiting for changes...')
         }
       })
     })
